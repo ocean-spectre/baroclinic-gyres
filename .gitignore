@@ -1,0 +1,8 @@
+mitgcmuv
+*.nc
+build
+*.meta
+*.data
+*.bin
+*.box
+output/

@@ -2,17 +2,15 @@
 # Continuous equation parameters
  &PARM01
  viscAh=2.E2,
- viscAr=1.E-5,
- no_slip_sides=.FALSE.,
+ viscAr=1.E-2,
+ no_slip_sides=.TRUE.,
  no_slip_bottom=.FALSE.,
- bottomDragQuadratic=2.0E-3,
- bottomDragLinear=0.0,
  diffKhT=1000.,
  diffKrT=1.E-5,
  ivdc_kappa=1.,
  implicitDiffusion=.TRUE.,
  eosType='LINEAR',
- tRefFile='tRef.bin',
+ tRef=30.,27.,24.,21.,18.,15.,13.,11.,9.,7.,6.,5.,4.,3.,2.,
  tAlpha=2.E-4,
  sBeta=0.,
  rhoNil=999.8,
@@ -43,7 +41,7 @@
 #-checkpoint every 150 days
  pChkptFreq=12960000,
  chkptFreq=12960000,
-#-dump every 1 day
+#-dump every 5 days
  dumpFreq=432000.0
 #-monitor every 1 day
  monitorFreq=86400.,
@@ -61,7 +59,7 @@
  delY=480*10.04184E3,
  xgOrigin=0.0,
  ygOrigin=0.0,
- delRFile='dz.bin'
+ delR=50.,60.,70.,80.,90.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,
  &
 
 # Input datasets

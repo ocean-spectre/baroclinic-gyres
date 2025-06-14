@@ -2,7 +2,7 @@
 
 cwd=$(pwd)
 cluster='galapagos'
-simulation='baseline_75layer'
+simulation='uniformshelf'
 
 ################################## DO NOT MODIFY BELOW ####################################
 #               (unless you really know what you're doing....)
@@ -11,7 +11,7 @@ simulation='baseline_75layer'
 dirModel="${cwd}/MITgcm"
 exedir=$cwd/simulations/$simulation/exe
 
-source $cwd/modules/$cluster.sh
+source $cwd/modules/$cluster
 
 echo "----------------------------"
 module list

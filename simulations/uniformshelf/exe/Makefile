@@ -1,13 +1,13 @@
 # Multithreaded + multi-processing makefile for:
-#    Linux oram 5.14.0-503.16.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Dec 11 19:09:50 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+#    Linux franklin 5.14.0-503.40.1.el9_5.x86_64 #1 SMP PREEMPT_DYNAMIC Wed Apr 30 17:38:54 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
 # This makefile was generated automatically on
-#    Sat Jun 14 01:17:49 PM EDT 2025
+#    Fri Dec  5 02:20:28 PM EST 2025
 # by the command:
-#    /group/tdgs/joe/baroclinic_gyres/MITgcm/tools/genmake2 -rootdir=/group/tdgs/joe/baroclinic_gyres/MITgcm -mods=/group/tdgs/joe/baroclinic_gyres/simulations/uniformshelf/code -ds -mpi -optfile /group/tdgs/joe/baroclinic_gyres/opt/galapagos
+#    /home/wyatt/baroclinic-gyres/MITgcm/tools/genmake2 -rootdir=/home/wyatt/baroclinic-gyres/MITgcm -mods=/home/wyatt/baroclinic-gyres/simulations/uniformshelf/code -ds -mpi -optfile /home/wyatt/baroclinic-gyres/opt/galapagos
 # executed by:
-#    joe@oram:/group/tdgs/joe/baroclinic_gyres/build
+#    wyatt@franklin:/home/wyatt/baroclinic-gyres/build
 #
-# OPTFILE="/group/tdgs/joe/baroclinic_gyres/opt/galapagos"
+# OPTFILE="/home/wyatt/baroclinic-gyres/opt/galapagos"
 #
 # BUILDDIR     : Directory where object files are written
 # SOURCEDIRS   : Directories containing the source (.F) files
@@ -25,10 +25,10 @@
 # LINK         : Command for link editor program
 # LIBS         : Library flags /or/ additional optimization/debugging flags
 
-ROOTDIR     = /group/tdgs/joe/baroclinic_gyres/MITgcm
+ROOTDIR     = /home/wyatt/baroclinic-gyres/MITgcm
 BUILDDIR    = .
-SOURCEDIRS  =  /group/tdgs/joe/baroclinic_gyres/simulations/uniformshelf/code $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mnc $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rw $(ROOTDIR)/eesupp/src $(ROOTDIR)/model/src
-INCLUDEDIRS =  /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-c-4.9.2-ho4jzyp56x355bq4r7zcfufdiqrxvl7b/include /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include /apps/pkgs/gcc-12.4.0/cuda-12.4/ompi/include /group/tdgs/joe/baroclinic_gyres/simulations/uniformshelf/code $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mnc $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rw $(ROOTDIR)/eesupp/inc $(ROOTDIR)/model/inc
+SOURCEDIRS  =  /home/wyatt/baroclinic-gyres/simulations/uniformshelf/code $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mnc $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rw $(ROOTDIR)/eesupp/src $(ROOTDIR)/model/src
+INCLUDEDIRS =  /apps/spack/opt/spack/linux-zen4/netcdf-c-4.9.3-2gwzaz4un6lx5ngcsessa4k2xbmt2vvf/include /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include /apps/spack/opt/spack/linux-zen4/openmpi-5.0.8-7fjwhkzqvr5ek2f77ki7ymbrgr3xqtmu/include /home/wyatt/baroclinic-gyres/simulations/uniformshelf/code $(ROOTDIR)/pkg/debug $(ROOTDIR)/pkg/diagnostics $(ROOTDIR)/pkg/generic_advdiff $(ROOTDIR)/pkg/mdsio $(ROOTDIR)/pkg/mnc $(ROOTDIR)/pkg/mom_common $(ROOTDIR)/pkg/mom_fluxform $(ROOTDIR)/pkg/mom_vecinv $(ROOTDIR)/pkg/monitor $(ROOTDIR)/pkg/rw $(ROOTDIR)/eesupp/inc $(ROOTDIR)/model/inc
 EXEDIR      = .
 EXECUTABLE  = $(EXEDIR)/mitgcmuv
 TOOLSDIR    = $(ROOTDIR)/tools
@@ -64,9 +64,9 @@ LINK = mpifort
 # Defines for CPP
 DEFINES = -DWORDLENGTH=4 -DNML_TERMINATOR -DALLOW_USE_MPI -DHAVE_SYSTEM -DHAVE_FDATE -DHAVE_ETIME_SBR -DHAVE_CLOC -DHAVE_SETRLSTK -DHAVE_SIGREG -DHAVE_STAT -DHAVE_NETCDF -DHAVE_FLUSH 
 # Includes for CPP
-INCLUDES =  -I/apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-c-4.9.2-ho4jzyp56x355bq4r7zcfufdiqrxvl7b/include -I/apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include -I/apps/pkgs/gcc-12.4.0/cuda-12.4/ompi/include
+INCLUDES =  -I/apps/spack/opt/spack/linux-zen4/netcdf-c-4.9.3-2gwzaz4un6lx5ngcsessa4k2xbmt2vvf/include -I/apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include -I/apps/spack/opt/spack/linux-zen4/openmpi-5.0.8-7fjwhkzqvr5ek2f77ki7ymbrgr3xqtmu/include
 # default CPP includes for makedepend
-CPPINCLUDES =  -I/apps/spack/opt/spack/linux-rocky9-zen2/gcc-11.5.0/gcc-12.4.0-kkxqywekx4vx5fea3kv7m3jhis2oigtj/lib/gcc/x86_64-pc-linux-gnu/12.4.0/include -I/usr/local/include -I/apps/spack/opt/spack/linux-rocky9-zen2/gcc-11.5.0/gcc-12.4.0-kkxqywekx4vx5fea3kv7m3jhis2oigtj/include -I/apps/spack/opt/spack/linux-rocky9-zen2/gcc-11.5.0/gcc-12.4.0-kkxqywekx4vx5fea3kv7m3jhis2oigtj/lib/gcc/x86_64-pc-linux-gnu/12.4.0/include-fixed -I/usr/include
+CPPINCLUDES =  -I/apps/spack/opt/spack/linux-zen4/gcc-13.4.0-e5ufqsb4fwkzzo6aqzn6m7mb3wkx3vhv/lib/gcc/x86_64-pc-linux-gnu/13.4.0/include -I/usr/local/include -I/apps/spack/opt/spack/linux-zen4/gcc-13.4.0-e5ufqsb4fwkzzo6aqzn6m7mb3wkx3vhv/include -I/apps/spack/opt/spack/linux-zen4/gcc-13.4.0-e5ufqsb4fwkzzo6aqzn6m7mb3wkx3vhv/lib/gcc/x86_64-pc-linux-gnu/13.4.0/include-fixed -I/usr/include
 # Flags for KPP
 KFLAGS1 = 
 KFLAGS2 = 
@@ -83,7 +83,7 @@ CFLAGS = -O0 -mcmodel=medium
 NOOPTFILES =  ini_masks_etc.F
 NOOPTFLAGS = -O0
 # Flags and libraries needed for linking
-LIBS =  -L/apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-c-4.9.2-ho4jzyp56x355bq4r7zcfufdiqrxvl7b/lib -L/apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/lib -lnetcdff -lnetcdf
+LIBS =  -L/apps/spack/opt/spack/linux-zen4/netcdf-c-4.9.3-2gwzaz4un6lx5ngcsessa4k2xbmt2vvf/lib -L/apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/lib -lnetcdff -lnetcdf
 # Name of the makefile
 MAKEFILE = Makefile
 # Name of the make program
@@ -793,6 +793,8 @@ H_SRC_FILES =  \
  netcdf_mem.h \
  netcdf_meta.h \
  netcdf_par.h \
+ netcdf_proplist.h \
+ hwloc.h \
  mpi-ext.h \
  mpif-c-constants-decl.h \
  mpif-config.h \
@@ -807,13 +809,14 @@ H_SRC_FILES =  \
  mpif-sizeof.h \
  mpi.h \
  mpi_portable_platform.h \
+ pmix_common.h \
+ pmix_deprecated.h \
+ pmix.h \
+ pmix_server.h \
+ pmix_tool.h \
+ pmix_version.h \
  prte.h \
  prte_version.h \
- pshmem.h \
- pshmemx.h \
- shmem-compat.h \
- shmem.h \
- shmemx.h \
  BAR2.h \
  BARRIER.h \
  CPP_EEMACROS.h \
@@ -956,7 +959,7 @@ CLEAN:
 	-rm -f oad_cp.[0-9][0-9][0-9].?????
 
 makefile:
-	$(TOOLSDIR)/genmake2  "-rootdir=/group/tdgs/joe/baroclinic_gyres/MITgcm" "-mods=/group/tdgs/joe/baroclinic_gyres/simulations/uniformshelf/code" "-ds" "-mpi" "-optfile" "/group/tdgs/joe/baroclinic_gyres/opt/galapagos"
+	$(TOOLSDIR)/genmake2  "-rootdir=/home/wyatt/baroclinic-gyres/MITgcm" "-mods=/home/wyatt/baroclinic-gyres/simulations/uniformshelf/code" "-ds" "-mpi" "-optfile" "/home/wyatt/baroclinic-gyres/opt/galapagos"
 cleanlinks:
 	-find . -type l -exec rm {} \;
 
@@ -974,9 +977,9 @@ FC_NAMEMANGLE.h:
 BUILD_INFO.h:
 	@echo Creating $@ ...
 	-echo "#define THISVER 'checkpoint69e'" > $@
-	-echo "#define THISUSER 'joe'" >> $@
-	-echo "#define THISDATE 'Sat Jun 14 01:17:49 PM EDT 2025'" >> $@
-	-echo "#define THISHOST 'oram'" >> $@
+	-echo "#define THISUSER 'wyatt'" >> $@
+	-echo "#define THISDATE 'Fri Dec  5 02:20:28 PM EST 2025'" >> $@
+	-echo "#define THISHOST 'franklin'" >> $@
 
 # The normal chain of rules is (  .F - .f - .o  )
 
@@ -1762,71 +1765,71 @@ ini_masks_etc.o: ini_masks_etc.f
 # This section creates symbolic links
 
 
-#  These files are linked from /group/tdgs/joe/baroclinic_gyres/simulations/uniformshelf/code ( aka /group/tdgs/joe/baroclinic_gyres/simulations/uniformshelf/code )
+#  These files are linked from /home/wyatt/baroclinic-gyres/simulations/uniformshelf/code ( aka /home/wyatt/baroclinic-gyres/simulations/uniformshelf/code )
  DIAGNOSTICS_SIZE.h SIZE.h :
-	if [ ! -L $@ ]; then $(LN) /group/tdgs/joe/baroclinic_gyres/simulations/uniformshelf/code/$@ $@; fi
+	if [ ! -L $@ ]; then $(LN) /home/wyatt/baroclinic-gyres/simulations/uniformshelf/code/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/debug ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/debug )
+#  These files are linked from $(ROOTDIR)/pkg/debug ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/debug )
  chksum_tiled.F debug_call.F debug_cs_corner_uv.F debug_enter.F debug_fld_stats_rl.F debug_fld_stats_rs.F debug_leave.F debug_msg.F DEBUG_OPTIONS.h debug_stats_rl.F debug_stats_rs.F fill_in_corners_rl.F write_fullarray_rl.F write_fullarray_rs.F debug_ad.flow :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/debug/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/diagnostics ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/diagnostics )
+#  These files are linked from $(ROOTDIR)/pkg/diagnostics ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/diagnostics )
  diag_calc_psivel.F diag_cg2d.F diagnostics_addtolist.F DIAGNOSTICS_CALC.h diagnostics_calc_phivel.F diagnostics_check.F diagnostics_clear.F diagnostics_fill.F diagnostics_fill_field.F diagnostics_fill_rs.F diagnostics_fill_state.F diagnostics_fract_fill.F DIAGNOSTICS.h diagnostics_ini_io.F diagnostics_init_early.F diagnostics_init_fixed.F diagnostics_init_varia.F diagnostics_interp_p2p.F diagnostics_interp_vert.F diagnostics_is_on.F diagnostics_list_check.F diagnostics_main_init.F diagnostics_mnc_out.F diagnostics_out.F DIAGNOSTICS_P2SHARE.h diagnostics_readparms.F diagnostics_read_pickup.F diagnostics_scale_fill.F diagnostics_scale_fill_rs.F diagnostics_set_calc.F diagnostics_setdiag.F diagnostics_set_levels.F diagnostics_set_pointers.F diagnostics_status_error.F diagnostics_sum_levels.F diagnostics_summary.F diagnostics_switch_onoff.F diagnostics_utils.F diagnostics_write_adj.F diagnostics_write.F diagnostics_write_pickup.F DIAG_OPTIONS.h diagstats_ascii_out.F diagstats_calc.F diagstats_clear.F diagstats_close_io.F diagstats_fill.F diagstats_global.F diagstats_ini_io.F diagstats_local.F diagstats_mnc_out.F diagstats_others_calc.F diagstats_output.F DIAGSTATS_REGIONS.h diagstats_setdiag.F diagstats_set_pointers.F diagstats_set_regions.F diag_vegtile_fill.F diagnostics_ad.flow :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/diagnostics/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/generic_advdiff ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/generic_advdiff )
+#  These files are linked from $(ROOTDIR)/pkg/generic_advdiff ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/generic_advdiff )
  gad_ad_check_lev1_dir.h gad_ad_check_lev2_dir.h gad_ad_check_lev3_dir.h gad_ad_check_lev4_dir.h gad_advection.F gad_advscheme.F gad_biharm_r.F gad_biharm_x.F gad_biharm_y.F gad_c2_adv_r.F gad_c2_adv_x.F gad_c2_adv_y.F gad_c2_impl_r.F gad_c4_adv_r.F gad_c4_adv_x.F gad_c4_adv_y.F gad_calc_rhs.F gad_check.F gad_del2.F gad_diagnostics_init.F gad_diagnostics_state.F gad_diff_r.F gad_diff_x.F gad_diff_y.F gad_dst2u1_adv_r.F gad_dst2u1_adv_x.F gad_dst2u1_adv_y.F gad_dst2u1_impl_r.F gad_dst3_adv_r.F gad_dst3_adv_x.F gad_dst3_adv_y.F gad_dst3fl_adv_r.F gad_dst3fl_adv_x.F gad_dst3fl_adv_y.F gad_dst3fl_impl_r.F gad_exch_som.F gad_fluxlimit_adv_r.F gad_fluxlimit_adv_x.F gad_fluxlimit_adv_y.F GAD_FLUX_LIMITER.h gad_fluxlimit_impl_r.F gad_grad_x.F gad_grad_y.F GAD.h gad_implicit_r.F gad_init_fixed.F gad_init_varia.F GAD_OPTIONS.h gad_os7mp_adv_r.F gad_os7mp_adv_x.F gad_os7mp_adv_y.F gad_osc_hat_r.F gad_osc_hat_x.F gad_osc_hat_y.F gad_osc_mul_r.F gad_osc_mul_x.F gad_osc_mul_y.F gad_plm_fun.F gad_ppm_adv_r.F gad_ppm_adv_x.F gad_ppm_adv_y.F gad_ppm_flx_r.F gad_ppm_flx_x.F gad_ppm_flx_y.F gad_ppm_fun.F gad_ppm_hat_r.F gad_ppm_hat_x.F gad_ppm_hat_y.F gad_ppm_p3e_r.F gad_ppm_p3e_x.F gad_ppm_p3e_y.F gad_pqm_adv_r.F gad_pqm_adv_x.F gad_pqm_adv_y.F gad_pqm_flx_r.F gad_pqm_flx_x.F gad_pqm_flx_y.F gad_pqm_fun.F gad_pqm_hat_r.F gad_pqm_hat_x.F gad_pqm_hat_y.F gad_pqm_p5e_r.F gad_pqm_p5e_x.F gad_pqm_p5e_y.F gad_read_pickup.F gad_som_advect.F gad_som_adv_r.F gad_som_adv_x.F gad_som_adv_y.F gad_som_exchanges.F gad_som_fill_cs_corner.F gad_som_lim_r.F gad_som_prep_cs_corner.F GAD_SOM_VARS.h gad_u3_adv_r.F gad_u3_adv_x.F gad_u3_adv_y.F gad_u3c4_impl_r.F gad_write_pickup.F salt_fill.F :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/generic_advdiff/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/mdsio ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/mdsio )
+#  These files are linked from $(ROOTDIR)/pkg/mdsio ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/mdsio )
  MDSIO_BUFF_3D.h mdsio_buffertorl.F mdsio_buffertors.F MDSIO_BUFF_WH.h mdsio_check4file.F mdsio_facef_read.F mdsio_gl.F mdsio_gl_slice.F MDSIO_OPTIONS.h mdsio_pass_r4torl.F mdsio_pass_r4tors.F mdsio_pass_r8torl.F mdsio_pass_r8tors.F mdsio_rd_rec_rl.F mdsio_rd_rec_rs.F mdsio_read_field.F mdsio_read_meta.F mdsio_read_section.F mdsio_read_tape.F mdsio_readvec_loc.F mdsio_read_whalos.F mdsio_rw_field.F mdsio_rw_slice.F mdsio_seg4torl.F mdsio_seg4tors.F mdsio_seg8torl.F mdsio_seg8tors.F mdsio_segxtorx_2d.F mdsio_write_field.F mdsio_writelocal.F mdsio_write_meta.F mdsio_write_section.F mdsio_write_tape.F mdsio_writevec_loc.F mdsio_write_whalos.F mdsio_wr_metafiles.F mdsio_wr_rec_rl.F mdsio_wr_rec_rs.F mdsio_ad.flow :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mdsio/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/mnc ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/mnc )
+#  These files are linked from $(ROOTDIR)/pkg/mnc ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/mnc )
  MNC_BUFF.h MNC_COMMON.h mnc_create_dir.c mnc_cw_citer.F mnc_cw_cvars.F mnc_cw_fsize.c mnc_cw_init.F mnc_cw_missingvals.F mnc_cw_model_attr.F mnc_cwrapper.F MNC_CW_READWRITE_I.F MNC_CW_READWRITE_RL.F MNC_CW_READWRITE_RS.F mnc_cw_udim.F mnc_cw_write_grid_info.F mnc_dim.F mnc_dump.F mnc_file.F mnc_grid.F MNC_ID_HEADER.h mnc_init.F MNC_OPTIONS.h MNC_PARAMS.h mnc_readparms.F MNC_SIZE.h mnc_update_time.F mnc_utils.F mnc_var.F mnc_ad.flow :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mnc/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/mom_common ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/mom_common )
+#  These files are linked from $(ROOTDIR)/pkg/mom_common ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/mom_common )
  mom_calc_3d_strain.F mom_calc_absvort3.F mom_calc_hdiv.F mom_calc_hfacz.F mom_calc_ke.F mom_calc_relvort3.F mom_calc_smag_3d.F mom_calc_strain.F mom_calc_tension.F mom_calc_visc.F MOM_COMMON_OPTIONS.h mom_diagnostics_init.F mom_hdissip.F mom_init_fixed.F mom_quasihydrostatic.F mom_u_botdrag_coeff.F mom_u_coriolis_nh.F mom_u_implicit_r.F mom_u_metric_nh.F mom_u_rviscflux.F mom_u_sidedrag.F mom_uv_smag_3d.F mom_v_botdrag_coeff.F mom_v_coriolis_nh.F mom_v_implicit_r.F MOM_VISC.h mom_visc_qgl_limit.F mom_visc_qgl_stretch.F mom_v_metric_nh.F mom_v_rviscflux.F mom_v_sidedrag.F mom_w_coriolis_nh.F mom_w_metric_nh.F mom_w_sidedrag.F mom_w_smag_3d.F :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mom_common/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/mom_fluxform ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/mom_fluxform )
+#  These files are linked from $(ROOTDIR)/pkg/mom_fluxform ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/mom_fluxform )
  mom_calc_rtrans.F mom_fluxform.F MOM_FLUXFORM.h MOM_FLUXFORM_OPTIONS.h mom_u_adv_uu.F mom_u_adv_vu.F mom_u_adv_wu.F mom_u_coriolis.F mom_u_del2u.F mom_u_metric_cylinder.F mom_u_metric_sphere.F mom_uv_boundary.F mom_u_xviscflux.F mom_u_yviscflux.F mom_v_adv_uv.F mom_v_adv_vv.F mom_v_adv_wv.F mom_v_coriolis.F mom_v_del2v.F mom_v_metric_cylinder.F mom_v_metric_sphere.F mom_v_xviscflux.F mom_v_yviscflux.F :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mom_fluxform/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/mom_vecinv ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/mom_vecinv )
+#  These files are linked from $(ROOTDIR)/pkg/mom_vecinv ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/mom_vecinv )
  mom_vecinv.F MOM_VECINV_OPTIONS.h mom_vi_coriolis.F mom_vi_del2uv.F mom_vi_hdissip.F mom_vi_u_coriolis_c4.F mom_vi_u_coriolis.F mom_vi_u_grad_ke.F mom_vi_u_vertshear.F mom_vi_v_coriolis_c4.F mom_vi_v_coriolis.F mom_vi_v_grad_ke.F mom_vi_v_vertshear.F :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/mom_vecinv/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/monitor ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/monitor )
+#  These files are linked from $(ROOTDIR)/pkg/monitor ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/monitor )
  mon_advcfl.F mon_advcflw2.F mon_advcflw.F mon_calc_advcfl.F mon_calc_stats_rl.F mon_calc_stats_rs.F mon_init.F monitor_ad.F monitor.F monitor_g.F MONITOR.h MONITOR_OPTIONS.h mon_ke.F mon_out.F mon_printstats_rl.F mon_printstats_rs.F mon_set_iounit.F mon_set_pref.F mon_solution.F mon_stats_latbnd_rl.F mon_stats_rl.F mon_stats_rs.F mon_surfcor.F mon_vort3.F mon_writestats_rl.F mon_writestats_rs.F monitor_ad.flow :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/monitor/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/pkg/rw ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/pkg/rw )
+#  These files are linked from $(ROOTDIR)/pkg/rw ( aka /home/wyatt/baroclinic-gyres/MITgcm/pkg/rw )
  get_write_global_fld.F read_fld_xy_rl.F read_fld_xy_rs.F read_fld_xyz_rl.F read_fld_xyz_rs.F read_glvec_rl.F read_glvec_rs.F read_mflds.F read_rec.F rw_get_suffix.F RW_MFLDS.h RW_OPTIONS.h set_write_global_fld.F write_fld_3d_rl.F write_fld_3d_rs.F write_fld_s3d_rl.F write_fld_s3d_rs.F write_fld_xy_rl.F write_fld_xy_rs.F write_fld_xyz_rl.F write_fld_xyz_rs.F write_glvec_rl.F write_glvec_rs.F write_local_rl.F write_local_rs.F write_rec.F rw_ad.flow :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/pkg/rw/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/eesupp/src ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/eesupp/src )
+#  These files are linked from $(ROOTDIR)/eesupp/src ( aka /home/wyatt/baroclinic-gyres/MITgcm/eesupp/src )
  all_proc_die.F bar2.F bar_check.F barrier.F check_threads.F comm_stats.F cumulsum_z_tile.F different_multiple.F diff_phase_multiple.F eeboot.F eeboot_minimal.F eedata_example.F eedie.F eeintro_msg.F eeset_parms.F eewrite_eeenv.F exch0_r4.F exch0_r8.F exch0_rl.F exch0_rs.F exch1_bg_r4_cube.F exch1_bg_r8_cube.F exch1_bg_rl_cube.F exch1_bg_rs_cube.F exch1_r4_cube.F exch1_r4.F exch1_r8_cube.F exch1_r8.F exch1_rl_ad.F exch1_rl_cube_ad.F exch1_rl_cube.F exch1_rl.F exch1_rs_ad.F exch1_rs_cube_ad.F exch1_rs_cube.F exch1_rs.F exch1_uv_r4_cube.F exch1_uv_r8_cube.F exch1_uv_rl_cube.F exch1_uv_rs_cube.F exch1_z_r4_cube.F exch1_z_r8_cube.F exch1_z_rl_cube.F exch1_z_rs_cube.F exch_3d_r4.F exch_3d_r8.F exch_3d_rl.F exch_3d_rs.F exch_cycle_ebl.F exch_init.F exch_r4_recv_get_x.F exch_r4_recv_get_y.F exch_r4_send_put_x.F exch_r4_send_put_y.F exch_r8_recv_get_x.F exch_r8_recv_get_y.F exch_r8_send_put_x.F exch_r8_send_put_y.F exch_rl_recv_get_x.F exch_rl_recv_get_y.F exch_rl_send_put_x.F exch_rl_send_put_y.F exch_rs_recv_get_x.F exch_rs_recv_get_y.F exch_rs_send_put_x.F exch_rs_send_put_y.F exch_s3d_r4.F exch_s3d_r8.F exch_s3d_rl.F exch_s3d_rs.F exch_sm_3d_r4.F exch_sm_3d_r8.F exch_sm_3d_rl.F exch_sm_3d_rs.F exch_tap_b.F exch_tap_d.F exch_uv_3d_r4.F exch_uv_3d_r8.F exch_uv_3d_rl.F exch_uv_3d_rs.F exch_uv_agrid_3d_r4.F exch_uv_agrid_3d_r8.F exch_uv_agrid_3d_rl.F exch_uv_agrid_3d_rs.F exch_uv_bgrid_3d_r4.F exch_uv_bgrid_3d_r8.F exch_uv_bgrid_3d_rl.F exch_uv_bgrid_3d_rs.F exch_uv_dgrid_3d_r4.F exch_uv_dgrid_3d_r8.F exch_uv_dgrid_3d_rl.F exch_uv_dgrid_3d_rs.F exch_uv_xy_r4.F exch_uv_xy_r8.F exch_uv_xy_rl.F exch_uv_xy_rs.F exch_uv_xyz_r4.F exch_uv_xyz_r8.F exch_uv_xyz_rl.F exch_uv_xyz_rs.F exch_xy_r4.F exch_xy_r8.F exch_xy_rl.F exch_xy_rs.F exch_xyz_r4.F exch_xyz_r8.F exch_xyz_rl.F exch_xyz_rs.F exch_z_3d_r4.F exch_z_3d_r8.F exch_z_3d_rl.F exch_z_3d_rs.F fill_cs_corner_ag_rl.F fill_cs_corner_tr_rl.F fill_cs_corner_uv_rl.F fill_cs_corner_uv_rs.F fool_the_compiler.F gather_2d_r4.F gather_2d_r8.F gather_2d_wh_r4.F gather_2d_wh_r8.F gather_vec_r4.F gather_vec_r8.F gather_xz.F gather_yz.F get_periodic_interval.F global_max.F global_sum.F global_sum_singlecpu.F global_sum_tile.F global_sum_vector.F gsl_ieee_env.c ini_communication_patterns.F ini_procs.F ini_threading_environment.F lef_zero.F main.F master_cpu_io.F master_cpu_thread.F mds_byteswapi4.F mds_byteswapr4.F mds_byteswapr8.F mdsfindunit.F mds_flush.F mds_reclen.F memsync.F nml_change_syntax.F nml_set_terminator.F open_copy_data_file.F print.F ptwrapper.c reset_halo.F scatter_2d_r4.F scatter_2d_r8.F scatter_2d_wh_r4.F scatter_2d_wh_r8.F scatter_vec_r4.F scatter_vec_r8.F scatter_xz.F scatter_yz.F setdir.c setrlstk.c sigreg.c stop_if_error.F tim.c timers.F timer_stats.c utils.F write_utils.F eesupp.flow exch1_ad.flow :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/eesupp/src/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/model/src ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/model/src )
+#  These files are linked from $(ROOTDIR)/model/src ( aka /home/wyatt/baroclinic-gyres/MITgcm/model/src )
  adams_bashforth2.F adams_bashforth3.F add_walls2masks.F apply_forcing.F calc_3d_diffusivity.F calc_adv_flow.F calc_div_ghat.F calc_eddy_stress.F calc_grad_phi_fv.F calc_grad_phi_hyd.F calc_grad_phi_surf.F calc_grid_angles.F calc_gw.F calc_ivdc.F calc_oce_mxlayer.F calc_phi_hyd.F calc_r_star.F calc_surf_dr.F calc_viscosity.F calc_wsurf_tr.F cg2d_ex0.F cg2d.F cg2d_nsa.F cg2d_sr.F cg3d_ex0.F cg3d.F check_pickup.F config_check.F config_summary.F convective_adjustment.F convective_adjustment_ini.F convectively_mixtracer.F convective_weights.F correction_step.F cycle_ab_tracer.F cycle_tracer.F diags_oceanic_surf_flux.F diags_phi_hyd.F diags_phi_rlow.F diags_rho.F diags_sound_speed.F do_atmospheric_phys.F do_fields_blocking_exchanges.F do_oceanic_phys.F do_stagger_fields_exchanges.F do_statevars_diags.F do_statevars_tave.F do_the_model_io.F do_write_pickup.F dynamics.F external_fields_load.F external_forcing.F external_forcing_surf.F find_alpha.F find_hyd_press_1d.F find_rho.F forcing_surf_relax.F forward_step.F freesurf_rescale_g.F freeze_surface.F grad_sigma.F gsw_teos10.F impldiff.F ini_cartesian_grid.F ini_cg2d.F ini_cg3d.F ini_cori.F ini_curvilinear_grid.F ini_cylinder_grid.F ini_depths.F ini_dynvars.F ini_eos.F ini_ffields.F ini_fields.F ini_forcing.F ini_global_domain.F ini_grid.F ini_linear_phisurf.F ini_local_grid.F ini_masks_etc.F ini_mixing.F ini_mnc_vars.F ini_model_io.F ini_nh_fields.F ini_nh_vars.F ini_nlfs_vars.F ini_parms.F ini_p_ground.F ini_pressure.F ini_psurf.F ini_salt.F ini_sigma_hfac.F ini_spherical_polar_grid.F ini_theta.F initialise_fixed.F initialise_varia.F ini_vel.F ini_vertical_grid.F integrate_for_w.F integr_continuity.F load_fields_driver.F load_grid_spacing.F load_ref_files.F main_do_loop.F momentum_correction_step.F packages_boot.F packages_check.F packages_error_msg.F packages_init_fixed.F packages_init_variables.F packages_print_msg.F packages_readparms.F packages_unused_msg.F packages_write_pickup.F plot_field.F port_rand.F post_cg3d.F pre_cg3d.F pressure_for_eos.F read_pickup.F remove_mean.F reset_nlfs_vars.F rotate_spherical_polar_grid.F rotate_uv2en.F salt_integrate.F seawater.F set_defaults.F set_grid_factors.F set_parms.F set_ref_state.F solve_for_pressure.F solve_pentadiagonal.F solve_tridiagonal.F solve_uv_tridiago.F state_summary.F swfrac.F taueddy_init_varia.F taueddy_tendency_apply.F temp_integrate.F the_main_loop.F the_model_main.F thermodynamics.F timestep.F timestep_tracer.F timestep_wvel.F tracers_correction_step.F tracers_iigw_correction.F turnoff_model_io.F update_cg2d.F update_etah.F update_etaws.F update_masks_etc.F update_r_star.F update_sigma.F update_surf_dr.F write_grid.F write_pickup.F write_state.F :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/model/src/$@ $@; fi
 
-#  These files are linked from /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-c-4.9.2-ho4jzyp56x355bq4r7zcfufdiqrxvl7b/include ( aka /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-c-4.9.2-ho4jzyp56x355bq4r7zcfufdiqrxvl7b/include )
- netcdf_aux.h netcdf_dispatch.h netcdf_filter_build.h netcdf_filter.h netcdf_filter_hdf5_build.h netcdf.h netcdf_json.h netcdf_mem.h netcdf_meta.h netcdf_par.h :
-	if [ ! -L $@ ]; then $(LN) /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-c-4.9.2-ho4jzyp56x355bq4r7zcfufdiqrxvl7b/include/$@ $@; fi
+#  These files are linked from /apps/spack/opt/spack/linux-zen4/netcdf-c-4.9.3-2gwzaz4un6lx5ngcsessa4k2xbmt2vvf/include ( aka /apps/spack/opt/spack/linux-zen4/netcdf-c-4.9.3-2gwzaz4un6lx5ngcsessa4k2xbmt2vvf/include )
+ netcdf_aux.h netcdf_dispatch.h netcdf_filter_build.h netcdf_filter.h netcdf_filter_hdf5_build.h netcdf.h netcdf_json.h netcdf_mem.h netcdf_meta.h netcdf_par.h netcdf_proplist.h :
+	if [ ! -L $@ ]; then $(LN) /apps/spack/opt/spack/linux-zen4/netcdf-c-4.9.3-2gwzaz4un6lx5ngcsessa4k2xbmt2vvf/include/$@ $@; fi
 
-#  These files are linked from /apps/pkgs/gcc-12.4.0/cuda-12.4/ompi/include ( aka /apps/pkgs/gcc-12.4.0/cuda-12.4/ompi/include )
- mpi-ext.h mpif-c-constants-decl.h mpif-config.h mpif-constants.h mpif-externals.h mpif-ext.h mpif.h mpif-handles.h mpif-io-constants.h mpif-io-handles.h mpif-sentinels.h mpif-sizeof.h mpi.h mpi_portable_platform.h prte.h prte_version.h pshmem.h pshmemx.h shmem-compat.h shmem.h shmemx.h :
-	if [ ! -L $@ ]; then $(LN) /apps/pkgs/gcc-12.4.0/cuda-12.4/ompi/include/$@ $@; fi
+#  These files are linked from /apps/spack/opt/spack/linux-zen4/openmpi-5.0.8-7fjwhkzqvr5ek2f77ki7ymbrgr3xqtmu/include ( aka /apps/spack/opt/spack/linux-zen4/openmpi-5.0.8-7fjwhkzqvr5ek2f77ki7ymbrgr3xqtmu/include )
+ hwloc.h mpi-ext.h mpif-c-constants-decl.h mpif-config.h mpif-constants.h mpif-externals.h mpif-ext.h mpif.h mpif-handles.h mpif-io-constants.h mpif-io-handles.h mpif-sentinels.h mpif-sizeof.h mpi.h mpi_portable_platform.h pmix_common.h pmix_deprecated.h pmix.h pmix_server.h pmix_tool.h pmix_version.h prte.h prte_version.h :
+	if [ ! -L $@ ]; then $(LN) /apps/spack/opt/spack/linux-zen4/openmpi-5.0.8-7fjwhkzqvr5ek2f77ki7ymbrgr3xqtmu/include/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/eesupp/inc ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/eesupp/inc )
+#  These files are linked from $(ROOTDIR)/eesupp/inc ( aka /home/wyatt/baroclinic-gyres/MITgcm/eesupp/inc )
  BAR2.h BARRIER.h CPP_EEMACROS.h CPP_EEOPTIONS.h CUMULSUM.h DEF_IN_MAKEFILE.h EEBUFF_SCPU.h EEPARAMS.h EESUPPORT.h EXCH.h GLOBAL_MAX.h GLOBAL_SUM.h MAIN_PDIRECTIVES1.h MAIN_PDIRECTIVES2.h MPI_INFO.h SIGREG.h :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/eesupp/inc/$@ $@; fi
 
-#  These files are linked from $(ROOTDIR)/model/inc ( aka /group/tdgs/joe/baroclinic_gyres/MITgcm/model/inc )
+#  These files are linked from $(ROOTDIR)/model/inc ( aka /home/wyatt/baroclinic-gyres/MITgcm/model/inc )
  CG2D.h CG3D.h CPP_OPTIONS.h DXC_MACROS.h DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h DYF_MACROS.h DYG_MACROS.h DYNVARS.h DYU_MACROS.h EOS.h FCORI_MACROS.h FFIELDS.h GRID.h GRID_MACROS.h HFACC_MACROS.h HFACS_MACROS.h HFACW_MACROS.h MASKS_MACROS.h MASKW_MACROS.h NH_VARS.h PARAMS.h RA_MACROS.h RAS_MACROS.h RAW_MACROS.h RECIP_DXC_MACROS.h RECIP_DXF_MACROS.h RECIP_DXG_MACROS.h RECIP_DXV_MACROS.h RECIP_DYC_MACROS.h RECIP_DYF_MACROS.h RECIP_DYG_MACROS.h RECIP_DYU_MACROS.h RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h RECIP_HFACW_MACROS.h RESTART.h SET_GRID.h SURFACE.h TANPHIATU_MACROS.h TANPHIATV_MACROS.h THE_MODEL_COMMON_BLOCKS.h XC_MACROS.h YC_MACROS.h :
 	if [ ! -L $@ ]; then $(LN) $(ROOTDIR)/model/inc/$@ $@; fi
 
@@ -4485,7 +4488,7 @@ memsync.f: CPP_EEMACROS.h CPP_EEOPTIONS.h /usr/include/stdc-predef.h
 mnc_cw_citer.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 mnc_cw_citer.f: MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h MNC_SIZE.h
 mnc_cw_citer.f: PACKAGES_CONFIG.h /usr/include/stdc-predef.h
-mnc_cw_cvars.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+mnc_cw_cvars.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 mnc_cw_cvars.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h DXC_MACROS.h
 mnc_cw_cvars.f: DXF_MACROS.h DXG_MACROS.h DXV_MACROS.h DYC_MACROS.h
 mnc_cw_cvars.f: DYF_MACROS.h DYG_MACROS.h DYU_MACROS.h EEPARAMS.h
@@ -4509,21 +4512,21 @@ mnc_cw_model_attr.f: BUILD_INFO.h CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h
 mnc_cw_model_attr.f: EEPARAMS.h MNC_ID_HEADER.h MNC_OPTIONS.h MNC_PARAMS.h
 mnc_cw_model_attr.f: PACKAGES_CONFIG.h PARAMS.h SIZE.h
 mnc_cw_model_attr.f: /usr/include/stdc-predef.h
-mnc_cwrapper.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+mnc_cwrapper.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 mnc_cwrapper.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 mnc_cwrapper.f: MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h MNC_SIZE.h
 mnc_cwrapper.f: PACKAGES_CONFIG.h PARAMS.h SIZE.h /usr/include/stdc-predef.h
-MNC_CW_READWRITE_I.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+MNC_CW_READWRITE_I.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 MNC_CW_READWRITE_I.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 MNC_CW_READWRITE_I.f: MNC_BUFF.h MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h
 MNC_CW_READWRITE_I.f: MNC_PARAMS.h MNC_SIZE.h PACKAGES_CONFIG.h PARAMS.h
 MNC_CW_READWRITE_I.f: SIZE.h /usr/include/stdc-predef.h
-MNC_CW_READWRITE_RL.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+MNC_CW_READWRITE_RL.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 MNC_CW_READWRITE_RL.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 MNC_CW_READWRITE_RL.f: MNC_BUFF.h MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h
 MNC_CW_READWRITE_RL.f: MNC_PARAMS.h MNC_SIZE.h PACKAGES_CONFIG.h PARAMS.h
 MNC_CW_READWRITE_RL.f: SIZE.h /usr/include/stdc-predef.h
-MNC_CW_READWRITE_RS.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+MNC_CW_READWRITE_RS.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 MNC_CW_READWRITE_RS.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 MNC_CW_READWRITE_RS.f: MNC_BUFF.h MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h
 MNC_CW_READWRITE_RS.f: MNC_PARAMS.h MNC_SIZE.h PACKAGES_CONFIG.h PARAMS.h
@@ -4547,18 +4550,18 @@ mnc_cw_write_grid_info.f: RECIP_HFACC_MACROS.h RECIP_HFACS_MACROS.h
 mnc_cw_write_grid_info.f: RECIP_HFACW_MACROS.h SIZE.h TANPHIATU_MACROS.h
 mnc_cw_write_grid_info.f: TANPHIATV_MACROS.h /usr/include/stdc-predef.h
 mnc_cw_write_grid_info.f: XC_MACROS.h YC_MACROS.h
-mnc_dim.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+mnc_dim.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 mnc_dim.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 mnc_dim.f: MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h MNC_SIZE.h
 mnc_dim.f: PACKAGES_CONFIG.h /usr/include/stdc-predef.h
 mnc_dump.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h MNC_COMMON.h
 mnc_dump.f: MNC_ID_HEADER.h MNC_OPTIONS.h MNC_SIZE.h PACKAGES_CONFIG.h
 mnc_dump.f: /usr/include/stdc-predef.h
-mnc_file.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+mnc_file.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 mnc_file.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 mnc_file.f: MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h MNC_SIZE.h
 mnc_file.f: PACKAGES_CONFIG.h /usr/include/stdc-predef.h
-mnc_grid.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+mnc_grid.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 mnc_grid.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 mnc_grid.f: MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h MNC_SIZE.h
 mnc_grid.f: PACKAGES_CONFIG.h /usr/include/stdc-predef.h
@@ -4573,11 +4576,11 @@ mnc_update_time.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 mnc_update_time.f: MNC_ID_HEADER.h MNC_OPTIONS.h MNC_PARAMS.h
 mnc_update_time.f: PACKAGES_CONFIG.h PARAMS.h SIZE.h
 mnc_update_time.f: /usr/include/stdc-predef.h
-mnc_utils.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+mnc_utils.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 mnc_utils.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 mnc_utils.f: MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h MNC_SIZE.h
 mnc_utils.f: PACKAGES_CONFIG.h /usr/include/stdc-predef.h
-mnc_var.f: /apps/spack/opt/spack/linux-rocky9-zen2/gcc-12.4.0/netcdf-fortran-4.6.1-i6ihktwlncvex35ychni2zglg6adnfub/include/netcdf.inc
+mnc_var.f: /apps/spack/opt/spack/linux-zen4/netcdf-fortran-4.6.2-vxrrprxsthbvoc645geyyagf7fgn7hc6/include/netcdf.inc
 mnc_var.f: CPP_EEMACROS.h CPP_EEOPTIONS.h CPP_OPTIONS.h EEPARAMS.h
 mnc_var.f: MNC_COMMON.h MNC_ID_HEADER.h MNC_OPTIONS.h MNC_SIZE.h
 mnc_var.f: PACKAGES_CONFIG.h /usr/include/stdc-predef.h

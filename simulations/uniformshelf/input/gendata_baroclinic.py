@@ -78,12 +78,30 @@ Y, X = np.meshgrid(y, x, indexing='ij')     # zonal wind-stress on (XG,YC) point
 tau = -tauMax * cos(2*pi*((Y-yo)/(ny-2)/dy))  # ny-2 accounts for walls at N,S boundaries
 tau.astype('>f4').tofile('windx_cosy.bin')
 
+plt.figure(figsize=(10, 6))
+plt.pcolor(X, Y, tau, cmap='viridis')
+plt.colorbar(label='Wind Stress (N/m^2)')
+plt.title('Zonal Wind Stress')
+plt.xlabel('Longitude (degrees)')
+plt.ylabel('Latitude (degrees)')
+plt.grid()
+plt.savefig('windx_cosy.png', dpi=300)
+
 # Restoring temperature (function of y only,
 # from Tmax at southern edge to Tmin at northern edge)
 Tmax = 30
 Tmin = 0
 Trest = (Tmax-Tmin)/(ny-2)/dy * (ynorth-Y) + Tmin # located and computed at YC points
 Trest.astype('>f4').tofile('SST_relax.bin')
+
+plt.figure(figsize=(10, 6))
+plt.pcolor(X, Y, Trest, cmap='jet')
+plt.colorbar(label='Restoring Temperature (°C)')
+plt.title('Restoring Temperature Field')
+plt.xlabel('Longitude (degrees)')
+plt.ylabel('Latitude (degrees)')
+plt.grid()
+plt.savefig('SST_relax.png', dpi=300)
 
 
 # #Interpolate tref from baroclinic gyre case to the new grid

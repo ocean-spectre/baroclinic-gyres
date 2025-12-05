@@ -8,3 +8,4 @@ build
 output/
 exe/
 *.out
+venv/

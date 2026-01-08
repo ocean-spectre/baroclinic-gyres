@@ -1,7 +1,10 @@
 #!/bin/bash
 
 module purge
+
+# franklin modules are here:
 module load gcc/13.4.0
+module load gcc-runtime/13.4.0
 module load openmpi/5.0.8
 module load netcdf-c/4.9.3
 module load netcdf-fortran/4.6.2

@@ -41,17 +41,17 @@
 #-checkpoint every 150 days
  pChkptFreq=12960000,
  chkptFreq=12960000,
-#-dump every 5 days
- dumpFreq=432000.0
+#-dump every 10 days
+ dumpFreq=864000.,
 #-monitor every 1 day
- monitorFreq=86400.,
+ monitorFreq=2592000.,
  monitorSelect=2,
 #-Relaxation time scale is 30 days
  tauThetaClimRelax=2592000.,
-#-Run for 6000 days
- endTime=518400000.0,
+#-Run for 10 years
+ endTime=315360000.,
  &
-
+Ri
 # Gridding parameters
  &PARM04
  usingCartesianGrid=.TRUE.,

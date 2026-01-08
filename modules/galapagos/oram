@@ -1,0 +1,11 @@
+#!/bin/bash
+
+module purge
+
+# oram modules are here:
+module use /opt/pkgs/spack/share/spack/lmod/linux-rocky9-x86_64/Core/
+module load gcc/11.5.0
+module load openmpi/5.0.9
+module load hdf5/1.14.6 netcdf-c/4.9.3 netcdf-fortran/4.6.2
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$NETCDF_FORTRAN_ROOT/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$NETCDF_C_ROOT/lib

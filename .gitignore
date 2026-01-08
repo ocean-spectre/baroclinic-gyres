@@ -9,3 +9,5 @@ output/
 exe/
 *.out
 venv/
+STD*
+mnc*

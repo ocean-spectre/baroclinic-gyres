@@ -1,0 +1,15 @@
+
+Currently Loaded Modules:
+  1) gcc/11.5.0            11) hwloc/2.12.2     21) bzip2/1.0.8
+  2) cuda/12.4             12) openssl/3.2.2    22) lz4/1.10.0
+  3) glibc/2.34            13) libevent/2.1.12  23) snappy/1.2.1
+  4) gcc-runtime/11.5.0    14) numactl/2.0.18   24) zstd/1.5.7
+  5) libpciaccess/0.17     15) openssh/8.7p1    25) c-blosc/1.21.6
+  6) libiconv/1.18         16) pmix/6.0.0       26) libaec/1.1.4
+  7) xz/5.6.3              17) prrte/4.0.0      27) netcdf-c/4.9.3
+  8) zlib/1.2.11           18) openmpi/5.0.9    28) netcdf-fortran/4.6.2
+  9) libxml2/2.13.5        19) pkgconf/1.7.3
+ 10) ncurses/6.5-20250705  20) hdf5/1.14.6
+
+ 
+

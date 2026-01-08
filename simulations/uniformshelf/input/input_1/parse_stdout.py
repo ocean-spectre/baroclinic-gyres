@@ -37,7 +37,7 @@ def parse_mitgcm_monitor(file_path):
 
 if __name__ == "__main__":
     # Interactive file path input for the user
-    file_path = "./STDOUT.test" #input("Enter the path to the MITgcm standard output file: ").strip()
+    file_path = "./STDOUT.0001" #input("Enter the path to the MITgcm standard output file: ").strip()
 
     # Parse the file for monitoring data
     monitor_data = parse_mitgcm_monitor(file_path)

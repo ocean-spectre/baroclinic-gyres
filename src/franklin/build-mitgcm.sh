@@ -3,15 +3,16 @@
 cwd=$(pwd)
 cluster='galapagos'
 simulation='uniformshelf'
+node='franklin'
 
 ################################## DO NOT MODIFY BELOW ####################################
 #               (unless you really know what you're doing....)
 ###########################################################################################
 
 dirModel="${cwd}/MITgcm"
-exedir=$cwd/simulations/$simulation/exe
+exedir=$cwd/simulations/$simulation/exe/$node
 
-source $cwd/modules/$cluster
+source $cwd/modules/$cluster/$node
 
 echo "----------------------------"
 module list

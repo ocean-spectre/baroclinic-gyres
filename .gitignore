@@ -8,6 +8,7 @@ build
 output/
 exe/
 *.out
+*.err
 venv/
 STD*
 mnc*

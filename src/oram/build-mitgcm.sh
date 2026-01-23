@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source ~/.bashrc
-
 cwd=$(pwd)
 cluster='galapagos'
 simulation='uniformshelf'

@@ -11,7 +11,7 @@ simulation=os.getenv('simulation', 'uniformshelf')
 cwd = os.getcwd()
 
 # make sure to change simulation number if relying on default instead of environment variable
-simulation_number = 1
+simulation_number = 2
 
 outdir=os.getenv('outdir', f'{cwd}/simulations/{simulation}/output/output_{simulation_number}')
 
@@ -49,8 +49,7 @@ coords = {
 grid = xgcm.Grid(ds, coords=coords, periodic=False, autoparse_metadata=False)
 
 # calculate barotropic streamfunction
-vertically_integrated_u = (ds.U * grid_ds.HFacW * grid_ds.drF).sum(dim='Z')
-vertically_integrated_v = (ds.V * grid_ds.HFacS * grid_ds.drF).sum(dim='Z')
+vertically_integrated_u = (ds.U * grid_ds.hFacW * grid_ds.drF).sum(dim='Z')
 barotropic_streamfunction = grid.cumsum(-vertically_integrated_u * grid_ds.dyG, "Y", boundary="fill")/1e6 # convert to Sv
 
 for i in range(len(ds['T'])):

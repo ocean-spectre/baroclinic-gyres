@@ -11,7 +11,7 @@ cwd = os.getcwd()
 # make sure to change simulation number if relying on default instead of environment variable
 simulation_number = 1
 
-outdir=os.getenv('outdir', f'{cwd}/simulations/{simulation}/output/output_{simulation_number}')
+outdir=os.getenv('outdir', f'{cwd}/simulations/{simulation}/output/full_output')
 
 output_dir = f'{outdir}/plots/ke'
 file_name = f'{outdir}/state_*.nc'
@@ -65,4 +65,4 @@ plt.ylabel(r'Total Kinetic Energy per unit mass $[\frac{m^2}{s^2}]$')
 plt.title('Total KE Timeseries')
 plt.grid()
 plt.tight_layout()
-plt.savefig(f'{output_dir}/ke_timeseries.png')
+plt.savefig(f'{output_dir}/full_ke_timeseries.png')

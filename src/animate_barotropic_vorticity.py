@@ -47,9 +47,10 @@ coords = {
 
 grid = xgcm.Grid(ds, coords=coords, periodic=False, autoparse_metadata=False)
 
-vorticity = (grid.diff(ds.V, "X") - grid.diff(ds.U, "Y")) / grid_ds.rAz
+depth_integrated_u = (ds.U * grid_ds.hFacW * grid_ds.drF).sum(dim='Z')
+depth_integrated_v = (ds.V * grid_ds.hFacS * grid_ds.drF).sum(dim='Z')
 
-barotropic_vorticity = (vorticity * grid_ds.drF).sum('Z')
+barotropic_vorticity = (grid.diff(depth_integrated_v, "X") - grid.diff(depth_integrated_u, "Y")) / grid_ds.rAz
 
 for i in range(len(ds['T'])):
     fig, ax = plt.subplots()

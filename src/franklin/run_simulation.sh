@@ -9,7 +9,7 @@
 #SBATCH --nodelist=franklin
 #SBATCH --exclusive
 
-source ~/.bashrc
+source /home/wyatt/miniconda3/etc/profile.d/conda.sh
 
 export cwd=$(pwd)
 export cluster='galapagos'

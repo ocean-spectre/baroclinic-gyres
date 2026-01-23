@@ -34,8 +34,6 @@ file_list.sort()
 ds = xr.open_mfdataset(file_list)
 grid = xgcm.Grid(ds)
 
-print(ds)
-
 # Loop over time steps and save movie
 for i in range(len(ds['T'])):
     fig, ax = plt.subplots()

@@ -2,7 +2,7 @@
 
 cwd=$(pwd)
 cluster='galapagos'
-simulation='uniformshelf'
+simulation='uniformshelf_DRAKKAR_25'
 node='oram'
 
 ################################## DO NOT MODIFY BELOW ####################################

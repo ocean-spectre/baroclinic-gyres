@@ -2,7 +2,7 @@
 #SBATCH --job-name=mitgcmuv
 #SBATCH --output=mitgcmuv.out
 #SBATCH --error=mitgcmuv.err
-#SBATCH --time=56:00:00
+#SBATCH --time=72:00:00
 #SBATCH --ntasks=24
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=32G
@@ -14,9 +14,9 @@ source /home/wyatt/miniconda3/etc/profile.d/conda.sh
 export cwd=$(pwd)
 export cluster='galapagos'
 export node='oram'
-export simulation='uniformshelf'
-export rundir=$simulation/run/run_8
-export outdir=$cwd/simulations/$simulation/output/output_8
+export simulation='uniformshelf_DRAKKAR_25'
+export rundir=$simulation/run/run_2
+export outdir=$cwd/simulations/$simulation/output/output_2
 ################################## DO NOT MODIFY BELOW ####################################
 #               (unless you really know what you're doing....)
 ###########################################################################################
@@ -70,12 +70,14 @@ mv STDOUT.* $outdir/stdouterr/
 mv STDERR.* $outdir/stdouterr/
 
 # Save mitgcm.out and mitgcm.err files
-mv $cwd/mitgcm.* $outdir
+mv $cwd/mitgcmuv.* $outdir
 
 # Create animation of the free surface height
 python $cwd/src/animate_eta.py
 python $cwd/src/ke_timeseries.py
 python $cwd/src/animate_sst.py
+python $cwd/src/cfl.py
+python $cwd/src/animate_cross_section.py
 #python $cwd/src/animate_barotropic_vorticity.py
 #python $cwd/src/animate_barotropic_streamfunction.py
 

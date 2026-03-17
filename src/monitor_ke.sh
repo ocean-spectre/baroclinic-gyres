@@ -5,7 +5,7 @@
 #SBATCH --error=ke.err
 #SBATCH --ntasks=24
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=32G
+#SBATCH --mem=16G
 #SBATCH --nodelist=noether
 #SBATCH --exclusive
 
@@ -13,9 +13,9 @@ source /home/wyatt/miniconda3/etc/profile.d/conda.sh
 
 export cwd=$(pwd)
 export cluster='galapagos'
-export simulation='uniformshelf'
-export rundir=$simulation/run/run_6
-export outdir=$cwd/simulations/$simulation/output/output_6
+export simulation='uniformshelf_DRAKKAR'
+export rundir=$simulation/run/run_1
+export outdir=$cwd/simulations/$simulation/output/output_2
 
 cd $cwd/simulations/$rundir
 
@@ -33,8 +33,12 @@ for i in $(ls mnc_0001/state.*.nc | awk -F "." '{print $2}'); do
 # Glue the grid
 ../../../../MITgcm/utils/python/MITgcmutils/scripts/gluemncbig -o $outdir/grid.nc mnc_00*/grid.*.nc
 
-python $cwd/src/ke_monitor.py
+python $cwd/src/animate_sst.py
 
 conda deactivate
 
-rm $outdir/*.nc
+#rm $outdir/*.nc
+
+cd $cwd
+rm ke.out
+rm ke.err

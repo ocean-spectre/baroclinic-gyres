@@ -1,0 +1,72 @@
+# Model parameters
+# Continuous equation parameters
+ &PARM01
+ viscAh=2.E2,
+ viscAr=1.E-2,
+ no_slip_sides=.TRUE.,
+ no_slip_bottom=.FALSE.,
+ diffKhT=1000.,
+ diffKrT=1.E-5,
+ hMixSmooth=0.3,
+ eosType='LINEAR',
+ tRefFile='tref.bin',
+ tAlpha=2.E-4,
+ sBeta=0.,
+ rhoNil=999.8,
+ gravity=9.81,
+ tempStepping=.TRUE.,
+ exactConserv=.TRUE.,
+ saltStepping=.FALSE.,
+# globalFiles=.TRUE.,
+ f0=1.E-4,
+ beta=1.E-11,
+ rhoConst=1000.,
+# gBaro=9.81,
+ rigidLid=.FALSE.,
+ implicitFreeSurface=.TRUE.,
+# momAdvection=.FALSE.,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dTargetResidual=1.E-7,
+ cg2dMaxIters=1000,
+ &
+
+# Time stepping parameters
+ &PARM03
+ startTime=259200000.,
+ deltaT=600.,
+#-mixed layer convective adjustment every 12 hours
+ cAdjFreq=43200.,
+#-checkpoint every 200 days
+ pChkptFreq=17280000,
+ chkptFreq=17280000,
+#-dump every 10 days
+ dumpFreq=864000.,
+#-monitor every 50 days
+ monitorFreq=4320000.,
+ monitorSelect=2,
+#-Relaxation time scale for surface SST is 30 days
+ tauThetaClimRelax=2592000.,
+#-Run for 3000 days
+ endTime=518400000.,
+ &
+Ri
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ delX=480*10.04184E3,
+ delY=480*10.04184E3,
+ xgOrigin=0.0,
+ ygOrigin=0.0,
+ delRFile='dz.bin',
+ &
+
+# Input datasets
+ &PARM05
+ bathyFile='bathy.bin'
+ zonalWindFile='windx_cosy.bin',
+ thetaClimFile='SST_relax.bin',
+ meridWindFile=,
+ &

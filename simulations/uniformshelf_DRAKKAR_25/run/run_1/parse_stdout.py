@@ -1,0 +1,1 @@
+../../input/input_1/parse_stdout.py

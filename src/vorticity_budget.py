@@ -102,7 +102,6 @@ phihyd = ds_dyn['PHIHYD']
 # Each region defines (y_slice, x_slice) for center-grid and cell-center-grid fields.
 # Functions return full 2D fields; integration is done per-region.
 mid_y = ny // 2
-wbc_nx = int(np.round(400e3 / dx))  # ~40 cells for 400 km
 
 regions = {
     'southern_gyre': {
@@ -119,31 +118,6 @@ regions = {
         'center': (slice(0, ny), slice(None)),
         'cell_center': (slice(0, ny_c), slice(None)),
         'title': 'Full Domain',
-    },
-    'wbc': {
-        'center': (slice(0, ny), slice(0, wbc_nx)),
-        'cell_center': (slice(0, ny_c), slice(0, min(wbc_nx, nx_c))),
-        'title': f'Western Boundary Current (0-{wbc_nx*dx/1e3:.0f} km)',
-    },
-    'wbc_south': {
-        'center': (slice(0, mid_y), slice(0, wbc_nx)),
-        'cell_center': (slice(0, min(mid_y, ny_c)), slice(0, min(wbc_nx, nx_c))),
-        'title': f'Southern Gyre WBC (0-{wbc_nx*dx/1e3:.0f} km)',
-    },
-    'wbc_north': {
-        'center': (slice(mid_y, ny), slice(0, wbc_nx)),
-        'cell_center': (slice(min(mid_y, ny_c), ny_c), slice(0, min(wbc_nx, nx_c))),
-        'title': f'Northern Gyre WBC (0-{wbc_nx*dx/1e3:.0f} km)',
-    },
-    'return_south': {
-        'center': (slice(0, mid_y), slice(wbc_nx, 2*wbc_nx)),
-        'cell_center': (slice(0, min(mid_y, ny_c)), slice(min(wbc_nx, nx_c), min(2*wbc_nx, nx_c))),
-        'title': f'Southern Gyre Return ({wbc_nx*dx/1e3:.0f}-{2*wbc_nx*dx/1e3:.0f} km)',
-    },
-    'return_north': {
-        'center': (slice(mid_y, ny), slice(wbc_nx, 2*wbc_nx)),
-        'cell_center': (slice(min(mid_y, ny_c), ny_c), slice(min(wbc_nx, nx_c), min(2*wbc_nx, nx_c))),
-        'title': f'Northern Gyre Return ({wbc_nx*dx/1e3:.0f}-{2*wbc_nx*dx/1e3:.0f} km)',
     },
 }
 
@@ -189,11 +163,20 @@ def compute_bpt_field(phi):
 def compute_nonlinear_field(u_3d, v_3d, w_3d):
     """Term 2: Nonlinear torque — 2D field on cell-center grid (ny_c, nx_c).
 
-    Flux-form: -curl of depth-integrated momentum flux divergence.
+    Flux-form: -curl of depth-integrated momentum flux divergence,
+    plus boundary terms from the depth integration:
+      - Nonlinear vortex tube stretching:  [w * zeta]_{z=-h}^{z=0}
+      - Transfer of vertical shear to BT vorticity:
+            [dw/dx * v - dw/dy * u]_{z=-h}^{z=0}
+
     Computes div(uu), div(uv) matching MITgcm's flux-form discretization.
       x-mom flux div: d(uu)/dx + d(vu)/dy + d(wu)/dz
       y-mom flux div: d(uv)/dx + d(vv)/dy + d(wv)/dz
     """
+    # ----------------------------------------------------------------
+    # Curl of depth-integrated flux divergence
+    # ----------------------------------------------------------------
+    
     # Interpolate u, v to cell centers for flux products
     u_c = 0.5 * (u_3d[:, :ny_c, :nx_c] + u_3d[:, :ny_c, 1:nx_c+1])
     v_c = 0.5 * (v_3d[:, :ny_c, :nx_c] + v_3d[:, 1:ny_c+1, :nx_c])
@@ -228,7 +211,50 @@ def compute_nonlinear_field(u_3d, v_3d, w_3d):
     ADV_V = (flux_div_v * thick_c).sum(axis=0)
 
     # Curl of depth-integrated flux divergence: d(ADV_V)/dx - d(ADV_U)/dy
-    return -(np.gradient(ADV_V, dx, axis=1) - np.gradient(ADV_U, dy, axis=0))
+    adv_curl = np.gradient(ADV_V, dx, axis=1) - np.gradient(ADV_U, dy, axis=0)
+
+    # ------------------------------------------------------------------
+    # Boundary terms from depth integration of 3D nonlinear vorticity
+    # ------------------------------------------------------------------
+    bk_c = bottom_k[:ny_c, :nx_c]
+    ocean_c = bk_c >= 0
+    jj_c = np.arange(ny_c)[:, None]
+    ii_c = np.arange(nx_c)[None, :]
+
+    # --- Surface (z=0): WVEL[k=0] is w at the top face (= 0 for rigid lid) ---
+    w_surf = w_c[0]
+    u_surf = u_c[0]
+    v_surf = v_c[0]
+
+    # --- Bottom (z=-h): w at bottom face of deepest cell = WVEL[k+1], or 0 ---
+    bk_below = np.minimum(bk_c + 1, nz - 1)
+    w_bot = np.where(bk_c + 1 < nz, w_c[bk_below, jj_c, ii_c], 0.0)
+    w_bot[~ocean_c] = 0.0
+    u_bot = u_c[bk_c, jj_c, ii_c]
+    v_bot = v_c[bk_c, jj_c, ii_c]
+    u_bot[~ocean_c] = 0.0
+    v_bot[~ocean_c] = 0.0
+
+    # Nonlinear vortex tube stretching: [w * zeta]_{z=-h}^{z=0}
+    #     zeta = dv/dx - du/dy  (relative vorticity at cell centers)
+    zeta_surf = np.gradient(v_surf, dx, axis=1) - np.gradient(u_surf, dy, axis=0)
+    zeta_bot = np.gradient(v_bot, dx, axis=1) - np.gradient(u_bot, dy, axis=0)
+    vortex_stretch = w_surf * zeta_surf - w_bot * zeta_bot
+
+    # Transfer of vertical shear to BT vorticity:
+    #     [dw/dx * v - dw/dy * u]_{z=-h}^{z=0}
+    dwdx_surf = np.gradient(w_surf, dx, axis=1)
+    dwdy_surf = np.gradient(w_surf, dy, axis=0)
+    shear_transfer_surf = dwdx_surf * v_surf - dwdy_surf * u_surf
+
+    dwdx_bot = np.gradient(w_bot, dx, axis=1)
+    dwdy_bot = np.gradient(w_bot, dy, axis=0)
+    shear_transfer_bot = dwdx_bot * v_bot - dwdy_bot * u_bot
+    
+    shear_transfer = shear_transfer_surf - shear_transfer_bot
+
+    # Return the sum of the terms
+    return adv_curl + vortex_stretch + shear_transfer
 
 def compute_planetary_field(U, V):
     """Term 3: Planetary vorticity -∇·(fŪ) — 2D field on center grid."""
@@ -332,14 +358,14 @@ def plot_budget(ax, b, title):
     ax.plot(time_days, b['wind'], 'r-', label=r'(4) Wind stress curl', linewidth=2)
     ax.plot(time_days, b['viscous'], 'm-', label=r'(6) Viscous torque ($A_h \nabla^2 \bar{\zeta}$)')
     ax.plot(time_days, b['tendency'], 'k--', label=r'Tendency $\partial \bar{\zeta} / \partial t$', linewidth=1.5)
-    #ax.plot(time_days, b['residual'], '-', color='gray', label='Residual', linewidth=1.5)
+    ax.plot(time_days, b['residual'], '-', color='gray', label='Residual', linewidth=1.5)
     ax.set_ylabel(r'[m$^3$/s$^2$]')
     ax.set_title(f'Depth-Integrated Vorticity Budget: {title}')
     ax.grid(True, alpha=0.3)
     ax.legend(loc='best', fontsize=7)
 
 # ============================================================
-# Plot 1 — Gyre budgets (3 panels, shared axes)
+# Plot — Gyre budgets (3 panels, shared axes)
 # ============================================================
 gyre_regions = ['southern_gyre', 'northern_gyre', 'full_domain']
 fig, axes = plt.subplots(3, 1, figsize=(10, 14), sharex=True, sharey=True)
@@ -350,29 +376,4 @@ for ax, region in zip(axes, gyre_regions):
 axes[-1].set_xlabel('Time (days)')
 plt.tight_layout()
 plt.savefig(f'{output_dir}/full_vorticity_budget.png', dpi=300)
-plt.close()
-
-# ============================================================
-# Plot 2 — Western boundary current budget
-# ============================================================
-fig, ax = plt.subplots(figsize=(10, 6))
-plot_budget(ax, budget['wbc'], regions['wbc']['title'])
-ax.set_xlabel('Time (days)')
-plt.tight_layout()
-plt.savefig(f'{output_dir}/wbc_vorticity_budget.png', dpi=300)
-plt.close()
-
-# ============================================================
-# Plot 3 — WBC sub-regions (4 panels)
-# ============================================================
-wbc_sub_regions = ['wbc_south', 'wbc_north', 'return_south', 'return_north']
-fig, axes = plt.subplots(2, 2, figsize=(14, 10), sharex=True, sharey=True)
-
-for ax, region in zip(axes.flat, wbc_sub_regions):
-    plot_budget(ax, budget[region], regions[region]['title'])
-
-axes[1, 0].set_xlabel('Time (days)')
-axes[1, 1].set_xlabel('Time (days)')
-plt.tight_layout()
-plt.savefig(f'{output_dir}/wbc_subregion_vorticity_budget.png', dpi=300)
 plt.close()

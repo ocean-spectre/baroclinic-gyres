@@ -57,22 +57,16 @@ u = ds['U'][:, :, :, :-1]
 v = ds['V'][:, :, :-1, :]
 w = ds['W']
 
-# suppress overflow warnings from xgcm interpolation, handled during xarray calculation
-with warnings.catch_warnings():
-    warnings.filterwarnings('ignore', category=RuntimeWarning, message='overflow encountered')
-    warnings.filterwarnings('ignore', category=RuntimeWarning, message='invalid value encountered')
-    warnings.filterwarnings('ignore', category=RuntimeWarning, message='All-NaN slice encountered')
-    
-    # interpolate onto cell centers (lazy operations with dask)
-    u_centered = grid.interp(u, 'X')
-    v_centered = grid.interp(v, 'Y')
+# interpolate onto cell centers
+u_centered = grid.interp(u, 'X')
+v_centered = grid.interp(v, 'Y')
 
-    # compute cfl for all timesteps at once using xarray operations, avoiding NaN values
-    cfl_x = (np.abs(u_centered) * timestep / xr.DataArray(dx, dims='X')).max(dim=["Z", "Y", "X"]).values
-    cfl_y = (np.abs(v_centered) * timestep / xr.DataArray(dy, dims='Y')).max(dim=["Z", "Y", "X"]).values
-    cfl_z = (np.abs(w) * timestep / np.abs(xr.DataArray(delR, dims='Zl'))).max(dim=["Zl", "Y", "X"]).values
-    #print(np.abs(w).max(dim=["Zl", "Y", "X"]).values)
-    
+# compute cfl for all timesteps at once using xarray operations, avoiding NaN values
+cfl_x = (np.abs(u_centered) * timestep / xr.DataArray(dx, dims='X')).max(dim=["Z", "Y", "X"]).values
+cfl_y = (np.abs(v_centered) * timestep / xr.DataArray(dy, dims='Y')).max(dim=["Z", "Y", "X"]).values
+cfl_z = (np.abs(w) * timestep / np.abs(xr.DataArray(delR, dims='Zl'))).max(dim=["Zl", "Y", "X"]).values
+#print(np.abs(w).max(dim=["Zl", "Y", "X"]).values)
+
 #print(f"CFL_x: {cfl_x}")
 #print(f"CFL_y: {cfl_y}")
 #print(f"CFL_z: {cfl_z}")

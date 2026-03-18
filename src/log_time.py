@@ -2,13 +2,14 @@ from datetime import datetime
 import os
 
 cluster=os.getenv('cluster', 'galapagos')
-simulation=os.getenv('simulation', 'uniformshelf')
+SIMULATION_DIR=os.getenv('SIMULATION_DIR', 'uniformshelf_DRAKKAR')
+OUT_DIR=os.getenv('OUT_DIR', 'output')
 cwd = os.getcwd()
 
 # make sure to change simulation number if relying on default instead of environment variable
 simulation_number = 5
 
-outdir=os.getenv('outdir', f'{cwd}/simulations/{simulation}/output/output_{simulation_number}')
+outdir=os.getenv('outdir', f'{SIMULATION_DIR}/{OUT_DIR}')
 
 time_file = f'{outdir}/run_info.txt'
 
@@ -20,7 +21,7 @@ current_time = datetime.now()
 
 if not os.path.exists(time_file):
     with open(time_file, "w") as file:
-        file.write(f"{current_time.strftime("%Y-%m-%d %H:%M:%S")}")
+        file.write(f"{current_time.strftime('%Y-%m-%d %H:%M:%S')}")
 else:
     with open(time_file, "r+") as file:
         

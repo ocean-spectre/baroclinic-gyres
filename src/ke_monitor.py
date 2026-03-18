@@ -5,7 +5,7 @@ import os
 import glob
 
 cluster=os.getenv('cluster', 'galapagos')
-simulation=os.getenv('simulation', 'uniformshelf')
+simulation=os.getenv('simulation', 'uniformshelf_DRAKKAR')
 cwd = os.getcwd()
 
 # make sure to change simulation number if relying on default instead of environment variable

@@ -6,10 +6,12 @@ import os
 import glob
 import cv2
 
-cluster=os.getenv('cluster', 'galapagos')
-simulation=os.getenv('simulation', 'uniformshelf')
+simulation=os.getenv('simulation', 'uniformshelf_DRAKKAR_25')
 cwd=os.getenv('cwd', os.getcwd())
-outdir=os.getenv('outdir', f'{cwd}/simulations/{simulation}/output/output_4')
+outdir=os.getenv('OUT_PATH', f'{cwd}/simulations/{simulation}/output/full_output')
+
+show_vectors = True   # set True to overlay surface velocity vectors (disables contour)
+quiver_stride = 10     # plot every Nth vector in each direction
 
 output_dir = f'{outdir}/plots/sst'
 file_name = f'{outdir}/state_*.nc'
@@ -31,12 +33,31 @@ file_list.sort()
 
 # open the data
 ds = xr.open_mfdataset(file_list)
-grid = xgcm.Grid(ds)
+
+# create horizontal grid for ke interpolation
+coords = {
+    "X": {"center": "X", "left": "Xp1"},
+    "Y": {"center": "Y", "left": "Yp1"},
+}
+
+grid = xgcm.Grid(ds, coords=coords, periodic=False, autoparse_metadata=False)
+
+
+# Precompute surface velocity interpolated to cell centres if needed
+if show_vectors:
+    u_center = grid.interp(ds['U'][:, 0, :, :], 'X')
+    v_center = grid.interp(ds['V'][:, 0, :, :], 'Y')
+    s = quiver_stride
+    XX, YY = np.meshgrid(ds['X'].values[::s], ds['Y'].values[::s])
 
 # Loop over time steps and save movie
 for i in range(len(ds['T'])):
     fig, ax = plt.subplots()
     ds['Temp'][i,0,:,:].plot(ax=ax, cmap='RdBu_r')
+    if show_vectors:
+        ax.quiver(XX, YY, u_center[i, ::s, ::s].values, v_center[i, ::s, ::s].values)
+    else:
+        ds['Temp'][i,0,:,:].plot.contour(ax=ax, colors='k', levels=15, linewidths=0.5)
     time_days = ds['T'][i].values / (24 * 3600)  # Convert seconds to days
     plt.title(f'Time: {time_days:.2f} days')
     # Pad the frame id with leading zeros
@@ -57,7 +78,8 @@ img = cv2.imread(image_files[0])
 height, width, layers = img.shape
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-video = cv2.VideoWriter(f'{output_dir}/sst.mp4', fourcc, 10, (width, height))
+video_name = 'sst_vectors.mp4' if show_vectors else 'sst.mp4'
+video = cv2.VideoWriter(f'{output_dir}/{video_name}', fourcc, 10, (width, height))
 # Loop through the images and write them to the video
 for filename in image_files:
     img = cv2.imread(filename)

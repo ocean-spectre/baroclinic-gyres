@@ -13,7 +13,7 @@ cwd = os.getcwd()
 # make sure to change simulation number if relying on default instead of environment variable
 simulation_number = 2
 
-outdir=os.getenv('outdir', f'{cwd}/simulations/{simulation}/output/output_{simulation_number}')
+outdir=os.getenv('outdir', f'{cwd}/simulations/{simulation}/output/full_output')
 
 output_dir = f'{outdir}/plots/barotropic_streamfunction'
 file_name = f'{outdir}/state_*.nc'
